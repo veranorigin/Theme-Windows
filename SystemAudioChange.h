@@ -40,7 +40,9 @@ struct SysAudioList {
 class SystemAudioChange:public RegistryChange {
 	SysAudioList to_change_list;//外界会向这个类传递一个“sysaudiolist”结构体，按照那里面的地址修改注册表即可。
 	int num;//关于我们已经向注册表插入了多少数据这回事。
-	SysAudioList changed_list;//因为reset函数的需要，如果能够随时取消之前做过的改动会比较好，因此存储.current键的数据是必要的。
+	std::vector<std::wstring> changed_list;//因为reset函数的需要，如果能够随时取消之前做过的改动会比较好，因此存储.current键的数据是必要的。
+	//以下都是我们在处理两个对外接口的实现时可能会用到的函数吧。
+	int SoloChange(std::wstring key,std::wstring value);
 public:
 	SystemAudioChange(SysAudioList waiting_list,int x):RegistryChange(),to_change_list(waiting_list),num(x) {
 	}
