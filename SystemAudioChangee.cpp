@@ -2,9 +2,7 @@
 #include<windows.h>
 #include<string>
 
-HKEY base_key_in_SAC;//整个系统语音的改变总共要需要最底层的键了。
-LONG error_1 = RegOpenKeyExW(HKEY_CURRENT_USER,L"AppEvents\\Schemes\\Apps\\.Default",0,KEY_READ | KEY_WRITE,&base_key_in_SAC);
-int SystemAudioChange::SoloChange(std::wstring key,std::wstring value){
+int SystemAudioChange::SoloChange(std::wstring key,std::wstring value,HKEY base_key_in_SAC){
 	HKEY using_hkey;
 	HKEY current_hkey;
 	DWORD all;
@@ -47,5 +45,115 @@ int SystemAudioChange::SoloChange(std::wstring key,std::wstring value){
 		return 1;
 	}else{
 		return 0;
+	}
+}
+
+int SystemAudioChange::do_the_change(){
+	HKEY base_key_in_SAC;//整个系统语音的改变总共要需要最底层的键了。
+	LONG error_1 = RegOpenKeyExW(HKEY_CURRENT_USER,L"AppEvents\\Schemes\\Apps\\.Default",0,KEY_READ | KEY_WRITE,&base_key_in_SAC);
+	if(this->to_change_list._point_Default == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L".Default",this->to_change_list._point_Default,base_key_in_SAC);
+	}
+	if(this->to_change_list.CriticalBatteryAlarm == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"CriticalBatteryAlarm",this->to_change_list.CriticalBatteryAlarm,base_key_in_SAC);
+	}
+	if(this->to_change_list.DeviceConnect == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"DeviceConnect",this->to_change_list.DeviceConnect,base_key_in_SAC);
+	}
+	if(this->to_change_list.DeviceDisconnect == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"DeviceDisconnect",this->to_change_list.DeviceDisconnect,base_key_in_SAC);
+	}
+	if(this->to_change_list.DeviceFail == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"DeviceFail",this->to_change_list.DeviceFail,base_key_in_SAC);
+	}
+	if(this->to_change_list.FaxBeep == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"FaxBeep",this->to_change_list.FaxBeep,base_key_in_SAC);
+	}
+	if(this->to_change_list.LowBatteryAlarm == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"LowBatteryAlarm",this->to_change_list.LowBatteryAlarm,base_key_in_SAC);
+	}
+	if(this->to_change_list.MailBeep == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"MailBeep",this->to_change_list.MailBeep,base_key_in_SAC);
+	}
+	if(this->to_change_list.MessageNudge == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"MessageNudge",this->to_change_list.MessageNudge,base_key_in_SAC);
+	}
+	if(this->to_change_list.Notification_point_Default == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"Notification.Default",this->to_change_list.Notification_point_Default,base_key_in_SAC);
+	}
+	if(this->to_change_list.Notification_point_IM == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"Notification.IM",this->to_change_list.Notification_point_IM,base_key_in_SAC);
+	}
+	if(this->to_change_list.Notification_point_Mail == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"Notification.Mail",this->to_change_list.Notification_point_Mail,base_key_in_SAC);
+	}
+	if(this->to_change_list.Notification_point_Proximity == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"Notification.Proximity",this->to_change_list.Notification_point_Proximity,base_key_in_SAC);
+	}
+	if(this->to_change_list.Notification_point_Reminder == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"Notification.Reminder",this->to_change_list.Notification_point_Reminder,base_key_in_SAC);
+	}
+	if(this->to_change_list.Notification_point_SMS == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"Notification.SMS",this->to_change_list.Notification_point_SMS,base_key_in_SAC);
+	}
+	if(this->to_change_list.ProximityConnection == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"ProximityConnection",this->to_change_list.ProximityConnection,base_key_in_SAC);
+	}
+	if(this->to_change_list.SystemAsterisk == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"SystemAsterisk",this->to_change_list.SystemAsterisk,base_key_in_SAC);
+	}
+	if(this->to_change_list.SystemExclamation == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"SystemExclamation",this->to_change_list.SystemExclamation,base_key_in_SAC);
+	}
+	if(this->to_change_list.SystemHand == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"SystemHand",this->to_change_list.SystemHand,base_key_in_SAC);
+	}
+	if(this->to_change_list.SystemNotification == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"SystemNotification",this->to_change_list.SystemNotification,base_key_in_SAC);
+	}
+	if(this->to_change_list.WindowsUAC == L"0"){
+		this->changed_list.push_back(L"0");
+	}else{
+		int error_default = this->SoloChange(L"WindowsUAC",this->to_change_list.WindowsUAC,base_key_in_SAC);
 	}
 }
