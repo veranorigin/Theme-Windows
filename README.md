@@ -7,3 +7,4 @@ Theme-Windows aims to allow all of us to personalize our Windows just put the re
 The expected way to use it is that first we have a "xxx.thwin" file shared by your friends or even developed by the official or we have some pictures,audios and so on so that we can use "Pack.exe" to decide what you'd like your Windows be.And both will lead you have a "xxx.thwin" pack that include all the information how do you want to personalise your Windows.Just using "Theme-Windows.exe" to open the pack and you can let your Windows personalised in your expected way.
 ## More
 This project haven't be finished and will never have be.Welcome to add new feature.
+Now we are currently working on System Voice Change,wallpaper change and so on.
