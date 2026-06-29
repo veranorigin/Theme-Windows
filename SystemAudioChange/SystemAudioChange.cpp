@@ -46,6 +46,15 @@ int SystemAudioChange::SoloChange(std::wstring key,std::wstring value,HKEY base_
 	}else{
 		return 0;
 	}
+	SendMessageTimeoutW(
+		HWND_BROADCAST,
+		WM_SETTINGCHANGE,
+		0,
+		(LPARAM)L"AppEvents",
+		SMTO_ABORTIFHUNG,
+		5000,
+		nullptr
+		);
 }
 
 int SystemAudioChange::do_the_change(){
